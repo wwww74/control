@@ -90,6 +90,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Base\ImageSourceWrapper.cs" />
+    <Compile Include="Base\ItemIndexHelper.cs" />
     <Compile Include="Base\LocalDatabase.cs" />
     <Compile Include="Base\RelayCommand.cs" />
     <Compile Include="Controls\Custom\MediaCustomControl.cs" />
@@ -101,6 +103,7 @@
     </Compile>
     <Compile Include="Converters\BoolToVisibilityConverter.cs" />
     <Compile Include="Converters\IndexToColorConverter.cs" />
+    <Compile Include="Converters\IndexToColorMultiConverter.cs" />
     <Compile Include="Model\HistoryItemModel.cs" />
     <Compile Include="Model\RadioStation.cs" />
     <Compile Include="Model\UserControlModel.cs" />

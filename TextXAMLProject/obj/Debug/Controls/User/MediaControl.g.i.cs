@@ -30,7 +30,6 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Shell;
 using TextXAMLProject.Controls.User;
-using TextXAMLProject.Converters;
 
 
 namespace TextXAMLProject.Controls.User {

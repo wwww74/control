@@ -7,6 +7,8 @@ using System.Windows.Controls;
 using System.Windows.Media.Imaging;
 using System.Windows.Media;
 using System.Windows.Shapes;
+using TextXAMLProject.Base;
+using System.Collections.Specialized;
 
 namespace TextXAMLProject.Controls.User
 {
@@ -19,27 +21,38 @@ namespace TextXAMLProject.Controls.User
         {
             InitializeComponent();
 
+            ImageSources.CollectionChanged += ImageSources_CollectionChanged;
+
             ImageSources.Add(LoadImage("Images/cat_1.jpg"));
             ImageSources.Add(LoadImage("Images/cat_2.png"));
             ImageSources.Add(LoadImage("Images/cat_3.jpg"));
 
+            ItemIndexHelper.UpdateItemIndex(ItemsControl);
+
             DataContext = this;
         }
+        private void ImageSources_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            ItemIndexHelper.UpdateItemIndex(ItemsControl);
+        }
 
+        protected override void OnInitialized(EventArgs e)
+        {
+            base.OnInitialized(e);
+        }
         public ObservableCollection<ImageSource> ImageSources
         {
             get { return _imageSources; }
             set
             {
                 _imageSources = value;
-                OnPropertyChanged();
+                OnPropertyChanged(nameof(ImageSources));
                 if (_imageSources.Count > 0)
                 {
                     CurrentIndex = 0;
                 }
             }
         }
-
         public int CurrentIndex
         {
             get { return _currentIndex; }
@@ -65,6 +78,7 @@ namespace TextXAMLProject.Controls.User
                 return null;
             }
         }
+
         private void PreviousButton_Click(object sender, RoutedEventArgs e) => CurrentIndex = (CurrentIndex - 1 + ImageSources.Count) % ImageSources.Count;
         private void NextButton_Click(object sender, RoutedEventArgs e) => CurrentIndex = (CurrentIndex + 1) % ImageSources.Count;
         private ImageSource LoadImage(string relativePath)

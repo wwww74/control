@@ -5,12 +5,14 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:TextXAMLProject.Controls.User"
              xmlns:converters="clr-namespace:TextXAMLProject.Converters"
+             xmlns:helpers="clr-namespace:TextXAMLProject.Base"
              mc:Ignorable="d"
              Background="LightGray"
              d:DesignHeight="200" d:DesignWidth="215">
 
-   <UserControl.Resources>
+    <UserControl.Resources>
         <converters:IndexToColorConverter x:Key="IndexToColorConverter"/>
+        <converters:IndexToColorMultiConverter x:Key="IndexToColorMultiConverter"/>
     </UserControl.Resources>
 
     <Grid>
@@ -23,22 +25,27 @@
             <Button Content="Предыдущая" Click="PreviousButton_Click" Margin="5"/>
             <Button Content="Следующая" Click="NextButton_Click" Margin="5"/>
 
-            <ItemsControl ItemsSource="{Binding ImageSources}" Margin="10">
+            <ItemsControl x:Name="ItemsControl" ItemsSource="{Binding ImageSources}" Margin="10">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
                         <StackPanel Orientation="Horizontal"/>
                     </ItemsPanelTemplate>
                 </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemContainerStyle>
+                    <Style TargetType="ContentPresenter">
+                        <Setter Property="helpers:ItemIndexHelper.ItemIndex" Value="{Binding RelativeSource={RelativeSource Self}, Path=(ItemsControl.Items).IndexOf.(ContentPresenter.Content)}"/>
+                    </Style>
+                </ItemsControl.ItemContainerStyle>
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <Ellipse Width="10" Height="10" Fill="{Binding RelativeSource={RelativeSource AncestorType=ItemsControl},
-                                   Path=DataContext.CurrentIndex,
-                                   Converter={StaticResource IndexToColorConverter},
-                                   ConverterParameter={Binding RelativeSource={RelativeSource Self}, 
-                                   Path=(ItemsControl.Items).IndexOf, 
-                                   RelativeSourceMode=FindAncestor, 
-                                   AncestorType={x:Type ContentPresenter}}}"
-                                   Margin="2" Stroke="Black" StrokeThickness="0.5" MouseDown="EventTrigger_MouseDown"/>
+                        <Ellipse Width="10" Height="10" Stroke="Black" StrokeThickness="0.5" MouseDown="EventTrigger_MouseDown">
+                            <Ellipse.Fill>
+                                <MultiBinding Converter="{StaticResource IndexToColorMultiConverter}">
+                                    <Binding RelativeSource="{RelativeSource AncestorType=ItemsControl}" Path="DataContext.CurrentIndex"/>
+                                    <Binding RelativeSource="{RelativeSource FindAncestor, AncestorType=ContentPresenter}" Path="(ItemsControl.Items).IndexOf.(ContentPresenter.Content)" />
+                                </MultiBinding>
+                            </Ellipse.Fill>
+                        </Ellipse>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
