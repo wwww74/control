@@ -1,0 +1,126 @@
+﻿<UserControl x:Class="TextXAMLProject.View.StandartCalculatorView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:TextXAMLProject.View"
+             mc:Ignorable="d">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4">
+            <TextBlock Grid.Column="0" Margin="20, 20, 20, 0" Text="{Binding LastOutputText}" TextAlignment="Right"/>
+        </Grid>
+        <Grid Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="4">
+            <TextBlock Grid.Column="0" Margin="20, 0, 20, 0" Background="LightGray" Text="{Binding Text}" TextAlignment="Right" FontSize="35"/>
+        </Grid>
+
+        <Grid Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="3">
+            <Grid Grid.Row="0" Grid.IsSharedSizeScope="True">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="0" Content="%" HorizontalAlignment="Stretch" Command="{Binding ProcentButton}"/>
+                <Button Grid.Column="1" Content="CE" HorizontalAlignment="Stretch" Command="{Binding CECommand}"/>
+                <Button Grid.Column="2" Content="C" HorizontalAlignment="Stretch" Command="{Binding CCommand}"/>
+            </Grid>
+        </Grid>
+        <Grid Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="3">
+            <Grid Grid.Row="0" Grid.IsSharedSizeScope="True">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="0" Content="1/x" HorizontalAlignment="Stretch" Command="{Binding OneDelXCommand}"/>
+                <Button Grid.Column="1" Content="x^2" HorizontalAlignment="Stretch" Command="{Binding DegreeCommand}"/>
+                <Button Grid.Column="2" Content="2√x" HorizontalAlignment="Stretch" Command="{Binding SqrtCommand}"/>
+            </Grid>
+        </Grid>
+        <Grid Grid.Column="4" Grid.Row="4" Grid.RowSpan="6">
+            <Grid Grid.Row="0" Grid.IsSharedSizeScope="True">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Button Grid.Row="0" Content="Del" HorizontalAlignment="Stretch" Command="{Binding DelCommand}"/>
+                <Button Grid.Row="1" Content="/" HorizontalAlignment="Stretch" Command="{Binding DivisionCommand}"/>
+                <Button Grid.Row="2" Content="*" HorizontalAlignment="Stretch" Command="{Binding MultiplicationCommand}"/>
+                <Button Grid.Row="3" Content="-" HorizontalAlignment="Stretch" Command="{Binding SubtractionCommand}"/>
+                <Button Grid.Row="4" Content="+" HorizontalAlignment="Stretch" Command="{Binding SumCommand}"/>
+                <Button Grid.Row="5" Content="=" HorizontalAlignment="Stretch" Background="LightBlue" Command="{Binding EquallyCommand}"/>
+            </Grid>
+        </Grid>
+        <Grid Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="3" Grid.RowSpan="4">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0" Grid.IsSharedSizeScope="True">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="0" Content="1" HorizontalAlignment="Stretch" Background="WhiteSmoke" Command="{Binding Num1Command}"/>
+                <Button Grid.Column="1" Content="2" HorizontalAlignment="Stretch" Background="WhiteSmoke"  Command="{Binding Num2Command}"/>
+                <Button Grid.Column="2" Content="3" HorizontalAlignment="Stretch" Background="WhiteSmoke"  Command="{Binding Num3Command}"/>
+            </Grid>
+            <Grid Grid.Row="1" Grid.IsSharedSizeScope="True">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="0" Content="4" HorizontalAlignment="Stretch" Background="WhiteSmoke" Command="{Binding Num4Command}"/>
+                <Button Grid.Column="1" Content="5" HorizontalAlignment="Stretch" Background="WhiteSmoke" Command="{Binding Num5Command}"/>
+                <Button Grid.Column="2" Content="6" HorizontalAlignment="Stretch" Background="WhiteSmoke" Command="{Binding Num6Command}"/>
+            </Grid>
+            <Grid Grid.Row="2" Grid.IsSharedSizeScope="True">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="0" Content="7" HorizontalAlignment="Stretch" Background="WhiteSmoke" Command="{Binding Num7Command}"/>
+                <Button Grid.Column="1" Content="8" HorizontalAlignment="Stretch" Background="WhiteSmoke" Command="{Binding Num8Command}"/>
+                <Button Grid.Column="2" Content="9" HorizontalAlignment="Stretch" Background="WhiteSmoke" Command="{Binding Num9Command}"/>
+            </Grid>
+            <Grid Grid.Row="3" Grid.IsSharedSizeScope="True">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="0" Content="+/-" HorizontalAlignment="Stretch" Background="WhiteSmoke" Command="{Binding PlusMinusCommand}"/>
+                <Button Grid.Column="1" Content="0" HorizontalAlignment="Stretch" Background="WhiteSmoke" Command="{Binding Num0Command}"/>
+                <Button Grid.Column="2" Content="," HorizontalAlignment="Stretch" Background="WhiteSmoke" Command="{Binding CommCommand}"/>
+            </Grid>
+        </Grid>
+    </Grid>
+</UserControl>

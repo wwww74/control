@@ -1,0 +1,58 @@
+﻿<UserControl x:Class="TextXAMLProject.Controls.User.CarouselControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:TextXAMLProject.Controls.User"
+             xmlns:converters="clr-namespace:TextXAMLProject.Converters"
+             mc:Ignorable="d"
+             Background="LightGray"
+             d:DesignHeight="200" d:DesignWidth="215">
+
+   <UserControl.Resources>
+        <converters:IndexToColorConverter x:Key="IndexToColorConverter"/>
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
+            <Button Content="Предыдущая" Click="PreviousButton_Click" Margin="5"/>
+            <Button Content="Следующая" Click="NextButton_Click" Margin="5"/>
+
+            <ItemsControl ItemsSource="{Binding ImageSources}" Margin="10">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Horizontal"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Ellipse Width="10" Height="10" Fill="{Binding RelativeSource={RelativeSource AncestorType=ItemsControl},
+                                   Path=DataContext.CurrentIndex,
+                                   Converter={StaticResource IndexToColorConverter},
+                                   ConverterParameter={Binding RelativeSource={RelativeSource Self}, 
+                                   Path=(ItemsControl.Items).IndexOf, 
+                                   RelativeSourceMode=FindAncestor, 
+                                   AncestorType={x:Type ContentPresenter}}}"
+                                   Margin="2" Stroke="Black" StrokeThickness="0.5" MouseDown="EventTrigger_MouseDown"/>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </StackPanel>
+
+        <Viewbox Margin="10" >
+            <ContentPresenter x:Name="CurrentImagePresenter" Content="{Binding CurrentImage}">
+                <ContentPresenter.ContentTemplate>
+                    <DataTemplate>
+                        <Image Source="{Binding}" Stretch="Uniform" />
+                    </DataTemplate>
+                </ContentPresenter.ContentTemplate>
+            </ContentPresenter>
+        </Viewbox>
+    </Grid>
+
+</UserControl>
